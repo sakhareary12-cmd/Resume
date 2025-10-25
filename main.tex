@@ -1,0 +1,307 @@
+\documentclass[a4paper,11pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{tabularx} % Required for tables that stretch to page width
+\usepackage{array} % Required for vertical centering in tables
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,139}
+
+% Page layout
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\footskip}{4.08pt}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+% Define personal information
+\newcommand{\name}{Aryan Surendra Sakhare} % Your Name
+\newcommand{\course}{B. Tech, Electrical Engineering} % Your Course
+\newcommand{\roll}{2023BEL601} % Your Roll No.
+\newcommand{\phone}{9579850969} % Your Phone Number
+\newcommand{\emaila}{sakhareary12@gmail.com} % Email 1
+\newcommand{\emailb}{2023bel601@sggs.ac.in} % Email 2
+\newcommand{\github}{sakhareary12-cmd} % Github
+\newcommand{\website}{https://example.com/} % Website
+\newcommand{\linkedin}{aryansakhare} % LinkedIn
+
+\begin{document}
+\fontfamily{cmr}\selectfont
+
+%----------HEADING-----------------
+\parbox{2.35cm}{%
+\includegraphics[width=2cm,clip]{logo.png}
+}
+\parbox{\dimexpr\linewidth-2.8cm\relax}{
+\begin{tabularx}{\linewidth}{L r}
+  \textbf{\LARGE \name} & +91-\phone \\
+  \course & \href{mailto:\emailb}{\emailb} \\
+  SGGSIE\&T, & \href{https://www.linkedin.com/in/\linkedin}{linkedin.com/in/\linkedin} \\
+  Vishnupuri, Nanded - 431606
+  & \href{https://github.com/\github}{github.com/\github} \\
+\end{tabularx}
+}
+\vspace{-2mm}
+
+\section{\textbf{Education}}
+\vspace{1mm}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}p{8cm}|>{\centering\arraybackslash}p{3cm}|>{\centering\arraybackslash}p{2.5cm}|}
+  \hline
+  \textbf{Degree/Certificate} & \textbf{Institute/Board} & \textbf{CGPA/Percentage} & \textbf{Year} \\
+  \hline
+  B.Tech., Electrical & SGGSIE\&T, Vishnupri, Nanded & 8.29 & May 2025 \\ 
+  \hline
+  Higher Secondary & Maharashtra State Board & 70.17\% & April 2023 \\
+  \hline
+  Secondary School & Blossom Public School (CBSE) & 68\% & April 2021 \\
+  \hline
+\end{tabularx}
+\vspace{-4mm}
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+\resumeSubheading
+    {AICTE Idea Lab SGGSIE\&T [\href{https://sggs.ac.in/home/page/aicte-idea-lab-sggsiet-nanded}{\faIcon{globe}}]}{Nanded, India}
+    {Intern}{Jun 2025 - Jul 2025}
+    \resumeItemListStart
+      \item Operated lab tools, equipment, and machinery for hands-on prototyping and fabrication. Guided students
+      in resource utilization and increased project-based learning participation
+      \item Developed a project "Fire Alarm using IoT" integrating ESP32, DHT11, and smoke sensors with CNC/3D
+      fabrication and PCB design.
+    \resumeItemListEnd
+\resumeSubheading
+    {Robin Hood Army [\href{https://robinhoodarmy.com/}{\faIcon{globe}}]}{Amravati}
+    {Social Intern}{Jun 2024 - Jul 2024}
+    \resumeItemListStart
+      \item Delivered basic education to children from underprivileged communities and facilitated enrollment of 30+ students into educational programs under Robin Hood Academy.
+      \item Developed communication, mentoring, and social coordination skills through volunteer initiatives.
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+    {IoT-Based Fire Alarm System}
+    {Tools: ESP 32, DHT-11, Fire Sensor, Smoke Sensor, ZMPT \& ACS Senosr for Voltage \& Current Sensing}
+    {July 2025}
+    {{}[\href{https://github.com/sakhareary12-cmd/IoT-Based-Fire-Alarm-System}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+    \item Designed a WiFi-enabled fire detection system with live cloud data logging.
+    \item Fabricated the enclosure using CNC and 3D printing and migrated the circuit from breadboard to PCB for improved reliability.
+\resumeItemListEnd
+\resumeProject
+    {Current Sensor using WCS1800}
+    {Tools: WCS1800, LM393, Resistors \& Capacitors}
+    {July 2025}
+    {{}[\href{https://github.com/sakhareary12-cmd/Current-Sensor-Using-WCS1800}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+    \item Designed a cost-effective current sensor using WCS1800 and LM393 capable of measuring up to 35A with high precision, built the circuit under 2000 Rupee compared to 1 Lk. Rupee market alternatives.
+\resumeItemListEnd
+\resumeProject
+{Full Bridge Rectifier}
+{Tools: Diodes, Relay Module, Voltage Regulator, Transformer}
+{July 2025}
+{{}[\href{https://github.com/sakhareary12-cmd/Full-Bridge-Rectifier}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+\item Developed a rectifier circuit converting 220V AC to 12V DC using diodes, transformer, and voltage regulator; integrated a relay module for short-circuit protection.
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\vspace{-8mm}
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+\resumeHeadingSkillStart
+\resumeSubItem{Technical}{: Circuit Design, PCB Design, Microcontrollers, Embedded Systems}
+\resumeSubItem{Software}{: MATLAB (Basic), Proteus, Altium, KiCAD, Fusion 360}
+\resumeSubItem{Tools}{: CAD Design, 3D Printing, CNC Operation, PCB Fabrication}
+\resumeSubItem{Languages}{: Marathi (Native), Hindi (Native), English (Fluent)}
+\resumeHeadingSkillEnd
+\vspace{-2mm}
+
+\section{\textbf{Certifications}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+\resumePOR
+    {NPTEL} % Certification Name
+    {, \href{https://www.linkedin.com/in/aryansakhare/details/certifications/1761338998542/single-media-viewer/?type=IMAGE\&profileId=ACoAAEHR75wB5JC8UfHXAkh3hzJOB8jS1o9-Bcw}{PCB \& Electronic Components: Thermal Management using Ansys ICEPAK}} % Issuer
+    {July 2025} % Duration
+    \resumePOR
+    {MathWorks}
+    {, \href{https://matlabacademy.mathworks.com/progress/share/certificate.html?id=be5ad319-a5a8-42c1-bf59-202ade75dfe4\&}{MATLAB Onramp}}
+    {June 2025}
+\resumePOR
+    {Altium Designer} % Certification Name
+    {, \href{https://www.linkedin.com/in/aryansakhare/details/certifications/1749227339915/single-media-viewer/?type=DOCUMENT\&profileId=ACoAAEHR75wB5JC8UfHXAkh3hzJOB8jS1o9-Bcw}{PCB Designing Certificate}} % Issuer
+    {June 2025} % Duration
+
+\resumeSubHeadingListEnd
+
+\vspace{-6mm}
+
+%-----------ACHIEVEMENTS-----------------
+\section{\textbf{Achievements}}
+\vspace{-0.2mm}
+\resumeSubHeadingListStart
+\resumePOR{}{\href{https://unstop.com/certificate-preview/9439aac1-14d0-481e-9901-9ade1d70dcd6 }{  Semi-finalist, Road Safety Hackathon }}{}
+\resumePOR{}{\href{https://www.linkedin.com/in/aryansakhare/details/certifications/1761327580034/single-media-viewer/?type=IMAGE\&profileId=ACoAAEHR75wB5JC8UfHXAkh3hzJOB8jS1o9-Bcw }{ Semi-finalist, Bug Busters 2.0 (24-Hour Hackathon) }}{}
+\resumePOR{}{\href{https://www.linkedin.com/in/aryansakhare/details/certifications/1725027408621/single-media-viewer/?profileId=ACoAAEHR75wB5JC8UfHXAkh3hzJOB8jS1o9-Bcw }{ Rank 8 - RMAGEDDON }}{}
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Positions of Responsibility}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+    \resumePOR{\href{https://tnpsggs.in/contactus}{Executive}, } % Position
+    {Training \& Placement Cell, SGGSIE\&T} %Club,Event
+    {Jan 2025} %Tenure Period
+
+    \resumePOR{\href{https://www.linkedin.com/company/eesa-sggsiet/posts/?feedView=all}{Secretary}, } % Position
+    {Electrical Engineering Students' Association, SGGSIE\&T} %Club,Event
+    {Aug 2024} %Tenure Period
+
+
+
+\resumeSubHeadingListEnd
+\vspace{-5mm}
+
+
+\end{document}
+
